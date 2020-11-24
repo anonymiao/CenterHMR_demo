@@ -35,7 +35,7 @@ Directly download the full-packed released package [CenterHMR.zip](https://githu
 
 Clone the repo:
 ```bash
-git https://github.com/anonymiao/CenterHMR_demo
+git clone https://github.com/anonymiao/CenterHMR_demo
 ```
 
 Then download the CenterHMR data from [Github release](https://github.com/Arthur151/CenterHMR/releases/download/v0.0/CenterHMR_data.zip), [Google drive](https://drive.google.com/file/d/1vAiuallhHEV3WVq36u0gy7uzbG38d5sU/view?usp=sharing) or [Baidu Drive](https://pan.baidu.com/s/13XTwBy31zhLZLerI3V-rQA) with password ```6hye```. 
