@@ -1,0 +1,27 @@
+
+ARGS:
+ tab: 'webcam'
+ GPUS: 0 
+ multi_person: True
+ kernel_sizes: [5]
+ use_coordmaps: True
+ fine_tune: True
+ eval: False
+
+ baseline: 'hrnetv5'
+ input_size: 512
+ centermap_size: 64
+ model_precision: 'fp32'
+ val_batch_size: 1
+ gmodel_path: '../trained_models/CenterHMR.pkl' #'../trained_models/CenterHMR+CAR.pkl'
+ demo_image_folder: None
+ save_mesh: False
+ save_centermap: False
+
+ webcam: True
+ cam_id: 0
+ webcam_mesh_color: 'ghostwhite'  #'LightCyan'
+ multiprocess: False
+ run_on_remote_server: False
+ server_ip: 'localhost'
+ server_port: 10086
