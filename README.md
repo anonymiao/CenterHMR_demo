@@ -35,7 +35,7 @@ Directly download the full-packed released package [CenterHMR.zip](https://githu
 
 Clone the repo:
 ```bash
-git https://github.com/anonymiao/CenterHMR_demo --depth 1
+git https://github.com/anonymiao/CenterHMR_demo
 ```
 
 Then download the CenterHMR data from [Github release](https://github.com/Arthur151/CenterHMR/releases/download/v0.0/CenterHMR_data.zip), [Google drive](https://drive.google.com/file/d/1vAiuallhHEV3WVq36u0gy7uzbG38d5sU/view?usp=sharing) or [Baidu Drive](https://pan.baidu.com/s/13XTwBy31zhLZLerI3V-rQA) with password ```6hye```. 
@@ -70,7 +70,7 @@ Please refer to the [bug.md](src/bugs.md) for unpleasant bugs. Feel free to subm
 <p float="center">
   <img src="../assets/demo/images_results/images-3dpw_sit_on_street.jpg" width="32%" />
   <img src="../assets/demo/images_results/images-Cristiano_Ronaldo.jpg" width="32%" />
-  <img src="../assets/demo/images_results/images-person_overlap.jpg" width="32%" />
+  <img src="../assets/demo/images_results/images-Cristiano_Ronaldo2.jpg" width="32%" />
 </p>
 
 ### Demo
@@ -104,7 +104,7 @@ To do this you just need to firstly change the input_video_path in src/configs/b
  video_or_frame: True
  input_video_path: '../demo/sample_video.mp4' # None
 ```
-, then run 
+and then run 
 
 ```bash
 cd CenterHMR_demo/src
@@ -136,7 +136,7 @@ To test FPS of CenterHMR on your device, please set configs/basic_test.yml as be
  save_visualization_on_img: False
  demo_image_folder: '../demo/videos/Messi_1'
 ```
-, then run 
+and then run 
 
 ```bash
 cd CenterHMR_demo/src
