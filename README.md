@@ -1,4 +1,4 @@
-# CenterHMR: Multi-Person Center-based Human Mesh Recovery
+# ROMP: Monocular, One-stage, Regression ofMultiple 3D People
 [![Google Colab demo](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1oz9E6uIbj4udOPZvA1Zi9pFx0SWH_UXg#scrollTo=s8gFtokdcEQo)
 
 ## Demo code
