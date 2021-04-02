@@ -1,77 +1,31 @@
-# ROMP: Monocular, One-stage, Regression of Multiple 3D People
+# Monocular, One-stage, Regression of Multiple 3D People
 [![Google Colab demo](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1oz9E6uIbj4udOPZvA1Zi9pFx0SWH_UXg#scrollTo=s8gFtokdcEQo)
 
-## Demo code
+ROMP is a one-stage network for multi-person 3D mesh recovery from a single image.
 
-**Real-time webcam demo using local/remote server.** Please refer to [config_guide.md](src/config_guide.md) for details.
+- **Simple:** Simultaneously predicting the body center locations and corresponding 3D body mesh parameters for all people at each pixel.
 
-**Google Colab demo.** Predicted results would be saved to a npy file per imag, please refer to [config_guide.md](src/config_guide.md) for details.
+- **Fast:** ROMP ResNet-50 model runs over *30* FPS on a 1070Ti GPU.
+
+- **Strong**: ROMP achieves superior performance on multiple challenging multi-person/occlusion benchmarks, including 3DPW, CMU Panoptic, and 3DOH50K.
+
+- **Easy to use:** We provide user friendly testing API and webcam demos. 
 
 <p float="center">
   <img src="../assets/demo/animation/c1_results_compressed.gif" width="32%" />
-  <img src="../assets/demo/animation/c5_results_compressed.gif" width="32%" />
-  <img src="../assets/demo/animation/c0_results_compressed.gif" width="32%" />
-</p>
-
-<p float="center">
   <img src="../assets/demo/animation/c4_results_compressed.gif" width="32%" />
-  <img src="../assets/demo/animation/c2_results_compressed.gif" width="32%" />
-  <img src="../assets/demo/animation/c3_results_compressed.gif" width="32%" />
+  <img src="../assets/demo/animation/c0_results_compressed.gif" width="32%" />
 </p>
 
 ### Try on Google Colab
 Before installation, you can take a few minutes to try the prepared [Google Colab demo](https://colab.research.google.com/drive/1oz9E6uIbj4udOPZvA1Zi9pFx0SWH_UXg#scrollTo=s8gFtokdcEQo) a try.  
 It allows you to run the project in the cloud, free of charge. 
 
-## Installation
+Please refer to the [bug.md](src/bugs.md) for unpleasant bugs. Welcome to submit the issues for related bugs.
 
-#### Download models
+### Installation
 
-###### Option 1:
-
-Directly download the full-packed released package [CenterHMR.zip](https://github.com/Arthur151/CenterHMR/releases/download/v0.1/CenterHMR_v0.1.zip) from github, latest version v0.1.
-
-###### Option 2:
-
-Clone the repo:
-```bash
-git clone https://github.com/anonymiao/CenterHMR_demo
-```
-
-Then download the CenterHMR data from [Github release](https://github.com/Arthur151/CenterHMR/releases/download/v0.0/CenterHMR_data.zip), [Google drive](https://drive.google.com/file/d/1vAiuallhHEV3WVq36u0gy7uzbG38d5sU/view?usp=sharing) or [Baidu Drive](https://pan.baidu.com/s/13XTwBy31zhLZLerI3V-rQA) with password ```6hye```. 
-
-Unzip the downloaded CenterHMR_data.zip under the root CenterHMR_demo/. 
-```bash
-cd CenterHMR_demo/
-unzip CenterHMR_data.zip
-```
-
-The layout would be
-```bash
-CenterHMR
-  - demo
-  - models
-  - src
-  - trained_models
-```
-
-#### Set up environments
-
-Please intall the Pytorch 1.6 from [the official website](https://pytorch.org/). We have tested the code on Ubuntu and Centos using Pytorch 1.6 only. 
-
-Install packages:
-```bash
-cd CenterHMR_demo/src
-sh scripts/setup.sh
-```
-
-Please refer to the [bug.md](src/bugs.md) for unpleasant bugs. Feel free to submit the issues for related bugs.
-
-<p float="center">
-  <img src="../assets/demo/images_results/images-3dpw_sit_on_street.jpg" width="32%" />
-  <img src="../assets/demo/images_results/images-Cristiano_Ronaldo.jpg" width="32%" />
-  <img src="../assets/demo/images_results/images-Cristiano_Ronaldo2.jpg" width="32%" />
-</p>
+Please refer to [install.md](src/lib/scripts/install.md) for installation.
 
 ### Demo
 
@@ -79,18 +33,15 @@ Currently, the released code is used to re-implement demo results. Only 1-2G GPU
 
 To do this you just need to run
 ```bash
-cd CenterHMR_demo/src
+cd ROMP/src
 sh run.sh
 # if there are any bugs about shell script, please consider run the following command instead:
-CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/basic_test.yml
+CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/single_image.yml
 ```
-Results will be saved in CenterHMR_demo/demo/images_results.
+Results will be saved in ROMP/demo/images_results.
 
 #### Internet images
-
-You can also run the code on random internet images via putting the images under CenterHMR_demo/demo/images before running sh run.sh.
-
-Or please refer to [config_guide.md](src/config_guide.md) for detail configurations.
+You can also run the code on random internet images via putting the images under ROMP/demo/images.
 
 Please refer to [config_guide.md](src/config_guide.md) for **saving the estimated mesh/Center maps/parameters dict**.
 
@@ -98,19 +49,19 @@ Please refer to [config_guide.md](src/config_guide.md) for **saving the estimate
 
 You can also run the code on random internet videos.
 
-To do this you just need to firstly change the input_video_path in src/configs/basic_test_video.yml to /path/to/your/video. For example, set
+To do this you just need to firstly change the input_video_path in src/configs/video.yml to /path/to/your/video. For example, set
 
 ```bash
  video_or_frame: True
  input_video_path: '../demo/sample_video.mp4' # None
 ```
-and then run 
+then run 
 
 ```bash
-cd CenterHMR_demo/src
-CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/basic_test_video.yml
+cd ROMP/src
+CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/video.yml
 ```
-Results will be displayed on your screen.
+Results will be saved to `../demo/sample_video_results.mp4` and `../demo/sample_video_results.npz`.
 
 #### Webcam
 
@@ -119,35 +70,13 @@ Currently, limited by the visualization pipeline, the webcam visulization code o
 
 To do this you just need to run
 ```bash
-cd CenterHMR_demo/src
-CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/basic_webcam.yml
-# or please set the TEST_MODE=0 WEBCAM_MODE=1 in run.sh, then run
-sh run.sh
+cd ROMP/src
+CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/webcam.yml
+# or try to use the model with ResNet-50 as backbone.
+CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/webcam_resnet.yml
 ```
-Press Up/Down to end the demo. Pelease refer to [config_guide.md](src/config_guide.md) for setting mesh color or camera id.
+Press Up/Down to end the demo. Pelease refer to [config_guide.md](src/config_guide.md) for running webcam demo on remote server, setting mesh color or camera id.
 
-If you wish to run webcam demo using remote server, pelease refer to [config_guide.md](src/config_guide.md).
+### Evaluation
 
-#### Test FPS
-
-To test FPS of CenterHMR on your device, please set configs/basic_test.yml as below
-
-```bash
- save_visualization_on_img: False
- demo_image_folder: '../demo/videos/Messi_1'
-```
-and then run 
-
-```bash
-cd CenterHMR_demo/src
-CUDA_VISIBLE_DEVICES=0 python core/test.py --gpu=0 --configs_yml=configs/basic_test.yml
-```
-
-## TODO LIST
-
-The code will be gradually open sourced according to:
-- [ ] the schedule
-  - [x] demo code for internet images / videos / webcam
-  - [x] runtime optimization
-  - [ ] benchmark evaluation
-  - [ ] training
+Please refer to [evaluation.md](src/lib/scripts/evaluation.md) for evaluation on benchmarks.
